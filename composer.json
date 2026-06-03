@@ -1,0 +1,77 @@
+{
+    "name": "lancodev/filament-meilisearch",
+    "description": "A Filament plugin for managing Meilisearch instances directly from your Filament admin panel.",
+    "keywords": [
+        "laravel",
+        "filament",
+        "meilisearch",
+        "search",
+        "admin",
+        "dashboard"
+    ],
+    "homepage": "https://github.com/lancodev/filament-meilisearch",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Your Name",
+            "email": "your@email.com"
+        }
+    ],
+    "require": {
+        "php": "^8.1",
+        "filament/filament": "^3.0|^4.0",
+        "illuminate/console": "^9.0|^10.0|^11.0|^12.0|^13.0",
+        "illuminate/contracts": "^9.0|^10.0|^11.0|^12.0|^13.0",
+        "illuminate/support": "^9.0|^10.0|^11.0|^12.0|^13.0",
+        "meilisearch/meilisearch-php": "^1.6",
+        "spatie/laravel-package-tools": "^1.16"
+    },
+    "require-dev": {
+        "laravel/pint": "^1.13",
+        "nunomaduro/collision": "^6.0|^7.0|^8.0",
+        "orchestra/testbench": "^7.0|^8.0|^9.0",
+        "pestphp/pest": "^2.0",
+        "pestphp/pest-plugin-laravel": "^2.0",
+        "phpstan/extension-installer": "^1.3",
+        "phpstan/phpstan-deprecation-rules": "^1.1",
+        "phpstan/phpstan-phpunit": "^1.3",
+        "spatie/laravel-ray": "^1.33"
+    },
+    "autoload": {
+        "psr-4": {
+            "Lancodev\\FilamentMeilisearch\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Lancodev\\FilamentMeilisearch\\Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "post-autoload-dump": "@composer run prepare",
+        "clear": "vendor/bin/testbench package:purge-filament-meilisearch --ansi",
+        "prepare": "vendor/bin/testbench package:discover --ansi",
+        "build": "@composer run prepare",
+        "start": "vendor/bin/testbench serve",
+        "analyse": "vendor/bin/phpstan analyse",
+        "test": "vendor/bin/pest",
+        "test-coverage": "vendor/bin/pest --coverage",
+        "format": "vendor/bin/pint"
+    },
+    "config": {
+        "sort-packages": true,
+        "allow-plugins": {
+            "pestphp/pest-plugin": true,
+            "phpstan/extension-installer": true
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Lancodev\\FilamentMeilisearch\\MeilisearchPluginServiceProvider"
+            ]
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
