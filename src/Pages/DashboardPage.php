@@ -37,8 +37,27 @@ class DashboardPage extends Page
             $this->health = $service->getHealth();
             $this->version = $service->getVersion();
             $this->stats = $service->getStats();
+
+            $this->filterStatsByAllowedIndexes();
         } catch (\Exception $e) {
             $this->health = ['status' => 'error', 'message' => $e->getMessage()];
+        }
+    }
+
+    protected function filterStatsByAllowedIndexes(): void
+    {
+        $allowedIndexes = MeilisearchPlugin::get()->getAllowedIndexes();
+
+        if ($allowedIndexes === null || $allowedIndexes === []) {
+            return;
+        }
+
+        if (isset($this->stats['indexes'])) {
+            $this->stats['indexes'] = array_filter(
+                $this->stats['indexes'],
+                fn (string $uid) => in_array($uid, $allowedIndexes, true),
+                ARRAY_FILTER_USE_KEY,
+            );
         }
     }
 

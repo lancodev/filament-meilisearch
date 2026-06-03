@@ -32,7 +32,9 @@ class IndexesPage extends Page
     public function loadIndexes(): void
     {
         try {
-            $this->indexes = app(MeilisearchService::class)->getIndexes();
+            $this->indexes = app(MeilisearchService::class)->getIndexes([
+                'allowed_indexes' => MeilisearchPlugin::get()->getAllowedIndexes(),
+            ]);
         } catch (\Exception $e) {
             Notification::make()
                 ->title('Failed to load indexes')

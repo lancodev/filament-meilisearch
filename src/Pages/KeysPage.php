@@ -93,7 +93,9 @@ class KeysPage extends Page
                     Select::make('indexes')
                         ->multiple()
                         ->options(function () {
-                            $indexes = app(MeilisearchService::class)->getIndexes();
+                            $indexes = app(MeilisearchService::class)->getIndexes([
+                                'allowed_indexes' => MeilisearchPlugin::get()->getAllowedIndexes(),
+                            ]);
 
                             return collect($indexes)->pluck('uid', 'uid')->toArray();
                         })
