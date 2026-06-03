@@ -23,7 +23,7 @@ A comprehensive Filament plugin for managing Meilisearch instances directly from
 ## Installation
 
 ```bash
-composer require yourvendor/filament-meilisearch
+composer require lancodev/filament-meilisearch
 ```
 
 Publish the configuration file:
