@@ -53,6 +53,21 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Allowed Indexes
+    |--------------------------------------------------------------------------
+    |
+    | Optionally restrict which Meilisearch indexes are visible in the admin
+    | panel. Set to null to show all indexes, or provide an array of index
+    | UIDs to whitelist only those indexes.
+    |
+    */
+
+    'allowed_indexes' => env('FILAMENT_MEILISEARCH_ALLOWED_INDEXES')
+        ? explode(',', env('FILAMENT_MEILISEARCH_ALLOWED_INDEXES'))
+        : null,
+
+    /*
+    |--------------------------------------------------------------------------
     | Pagination
     |--------------------------------------------------------------------------
     |

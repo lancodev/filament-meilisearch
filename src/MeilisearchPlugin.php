@@ -17,6 +17,8 @@ class MeilisearchPlugin implements Plugin
 {
     protected array $features = [];
 
+    protected ?array $allowedIndexes = null;
+
     protected ?string $navigationGroup = null;
 
     protected ?string $navigationIcon = null;
@@ -87,6 +89,29 @@ class MeilisearchPlugin implements Plugin
     public function getFeatures(): array
     {
         return $this->features ?: config('filament-meilisearch.features', []);
+    }
+
+    public function allowedIndexes(array $indexes): static
+    {
+        $this->allowedIndexes = $indexes;
+
+        return $this;
+    }
+
+    public function getAllowedIndexes(): ?array
+    {
+        return $this->allowedIndexes ?? config('filament-meilisearch.allowed_indexes');
+    }
+
+    public function isIndexAllowed(string $uid): bool
+    {
+        $allowed = $this->getAllowedIndexes();
+
+        if ($allowed === null || $allowed === []) {
+            return true;
+        }
+
+        return in_array($uid, $allowed, true);
     }
 
     public function isFeatureEnabled(string $feature): bool

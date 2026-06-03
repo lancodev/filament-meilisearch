@@ -52,12 +52,23 @@ class MeilisearchService
 
         $results = $this->client->getIndexes($query)->getResults();
 
-        return array_map(fn (Indexes $index) => [
+        $indexes = array_map(fn (Indexes $index) => [
             'uid' => $index->getUid(),
             'primaryKey' => $index->getPrimaryKey(),
             'createdAt' => $index->getCreatedAt()?->format('c'),
             'updatedAt' => $index->getUpdatedAt()?->format('c'),
         ], $results);
+
+        $allowedIndexes = $options['allowed_indexes'] ?? null;
+
+        if ($allowedIndexes !== null && $allowedIndexes !== []) {
+            $indexes = array_values(array_filter(
+                $indexes,
+                fn (array $index) => in_array($index['uid'], $allowedIndexes, true),
+            ));
+        }
+
+        return $indexes;
     }
 
     public function getIndex(string $uid): Indexes
