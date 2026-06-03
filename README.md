@@ -118,6 +118,32 @@ MeilisearchPlugin::make()
     ])
 ```
 
+### Limiting Visible Indexes
+
+By default, all indexes in your Meilisearch instance are shown. You can restrict which indexes are visible in the admin panel:
+
+**Via the plugin registration:**
+
+```php
+MeilisearchPlugin::make()
+    ->allowedIndexes(['products', 'users', 'orders']);
+```
+
+**Via the config file:**
+
+```php
+// config/filament-meilisearch.php
+'allowed_indexes' => ['products', 'users', 'orders'],
+```
+
+**Via the `.env` file:**
+
+```env
+FILAMENT_MEILISEARCH_ALLOWED_INDEXES=products,users,orders
+```
+
+When set, only the listed indexes will appear in the Dashboard, Indexes, and API Keys pages. Set to `null` (or omit) to show all indexes.
+
 ## Security
 
 **Important:** Ensure your Meilisearch instance is properly secured. This plugin requires a Meilisearch API key with appropriate permissions. We recommend:
