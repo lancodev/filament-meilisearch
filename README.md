@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="banner.png" alt="Filament Meilisearch Plugin" width="100%">
+</p>
+
 # Filament Meilisearch Plugin
 
 A comprehensive Filament plugin for managing Meilisearch instances directly from your Filament admin panel. Inspired by [meiliweb](https://github.com/bpolaszek/meiliweb).
