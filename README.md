@@ -21,7 +21,7 @@ A comprehensive Filament plugin for managing Meilisearch instances directly from
 
 - PHP 8.1+
 - Laravel 9.0+ | 10.0+ | 11.0+
-- Filament v3.0+
+- Filament v4.0+|v5.0+
 - Meilisearch PHP SDK ^1.6
 
 ## Installation
