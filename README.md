@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="banner.png" alt="Filament Meilisearch Plugin" width="100%">
+  <img src="banner.png" alt="Filament Meilisearch Plugin" width="100%" class="filament-hidden">
 </p>
 
 # Filament Meilisearch Plugin
